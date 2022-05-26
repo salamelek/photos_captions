@@ -5,12 +5,12 @@ import pathlib
 
 pics_path = "./pics_to_edit"
 edited_pics = "./edited_pics"
-font_path = "./fonts/Jonathan-www.Dfonts.org/Jonathan.ttf"
+font_path = "./fonts/Aller/Aller_Bd.ttf"
 msg = "YOUR MESSAGE HERE"
 
 px_from_bottom = 10
-font_size = 120
-rgb_colour = (255, 255, 255)
+font_size = 20
+rgb_colour = (255, 0, 0)
 
 path = pathlib.Path(pics_path)
 
@@ -18,10 +18,10 @@ path = pathlib.Path(pics_path)
 for entry in path.iterdir():
     if entry.is_file():
         str_file = str(entry)
-        print(str_file)
-        print(f"./{str_file}")
+        img_name = str_file[(len(str_file) - (len(pics_path) - 2)):]
+        # i don't care that its super inefficient and dumb, it works
 
-        img = Image.open(f"./{str_file}")
+        img = Image.open(f"./{pics_path}/{img_name}")
 
         try:
             if hasattr(img, '_getexif'):  # only present in JPEGs
@@ -55,4 +55,4 @@ for entry in path.iterdir():
 
         I1.text((font_x, font_y), msg, font=myFont, fill=rgb_colour)
 
-        img.save(f"./edited_pics/edited_{str_file}")
+        img.save(f"{edited_pics}/edited_{img_name}")
