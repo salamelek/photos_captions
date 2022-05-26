@@ -3,7 +3,7 @@ from PIL import ImageDraw
 from PIL import ImageFont
 import pathlib
 
-pics_path = "pics_to_edit"
+pics_path = "./pics_to_edit"
 edited_pics = "./edited_pics"
 font_path = "./fonts/Jonathan-www.Dfonts.org/Jonathan.ttf"
 msg = "YOUR MESSAGE HERE"
@@ -17,10 +17,11 @@ path = pathlib.Path(pics_path)
 
 for entry in path.iterdir():
     if entry.is_file():
-        print(str(entry))
-        str_file = str(entry)[7:]
+        str_file = str(entry)
+        print(str_file)
+        print(f"./{str_file}")
 
-        img = Image.open(f"{pics_path}/{str_file}")
+        img = Image.open(f"./{str_file}")
 
         try:
             if hasattr(img, '_getexif'):  # only present in JPEGs
